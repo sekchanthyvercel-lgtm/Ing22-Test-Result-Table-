@@ -148,7 +148,22 @@ export default function App() {
     return colors[Math.abs(hash) % colors.length];
   };
 
-  if (!currentRecord || !currentLevel) return null;
+  if (!currentRecord || !currentLevel) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-slate-50">
+        <div className="text-center p-8 bg-white rounded-xl shadow-sm border border-slate-200">
+          <h2 className="text-xl font-semibold text-slate-800 mb-2">Data Error</h2>
+          <p className="text-slate-500 mb-4">No class record or level found. This might happen if templates were loaded incorrectly.</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Reload Application
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col">
